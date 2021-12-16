@@ -20,25 +20,25 @@ public class Main {
     public static final String addr = "0xfeed6d6161500ba975ed4893d38b7952e8c4933e";
 
     public static void main(String[] args) throws ContractException {
-        logger.info("hello");
-
-        // 初始化BcosSDK
-        BcosSDK sdk =  BcosSDK.build(configFile);
-        // 为群组1初始化client
+        BcosSDK sdk = BcosSDK.build(configFile);
         Client client = sdk.getClient(Integer.valueOf(1));
 
-        // 获取群组1的块高
         BlockNumber blockNumber = client.getBlockNumber();
+        logger.info("blockNumber:{}", blockNumber.getBlockNumber());
 
-        // 向群组1部署合约
         CryptoKeyPair cryptoKeyPair = client.getCryptoSuite().getCryptoKeyPair();
         Wines wines = Wines.deploy(client, cryptoKeyPair, name, symbol);
 
-        // 调用合约
         TransactionReceipt receipt = wines.issueWineNFT(addr, BigInteger.ONE, "https://www.tttttt.com/1");
 
         String tokenURI = wines.tokenURI(BigInteger.ONE);
 
         logger.info(tokenURI);
+
+        blockNumber = client.getBlockNumber();
+        logger.info("blockNumber:{}", blockNumber.getBlockNumber());
+
+        client.stop();
+        sdk.stopAll();
     }
 }
