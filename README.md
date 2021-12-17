@@ -1,3 +1,5 @@
+- 合约结构：https://app.yinxiang.com/fx/4fb45c35-7e46-4517-b790-986c80573a84
+
 - 配置节点证书
 ```shell
 # 假设SDK证书位于~/fisco/nodes/127.0.0.1/sdk/目录
@@ -32,3 +34,5 @@ cd ~/fisco/console && bash sol2java.sh -p org.com.ac
 # 将编译出的java文件拷贝到项目中
 cp -r ~/fisco/console/contracts/sdk/java/org ./src/main/java/
 ```
+
+- NFT相关api见api.md

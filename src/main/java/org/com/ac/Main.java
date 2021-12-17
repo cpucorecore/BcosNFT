@@ -14,7 +14,7 @@ import java.math.BigInteger;
 public class Main {
     public static final Logger logger = LoggerFactory.getLogger(Main.class);
 
-    public static final String configFile = "/Users/sky/IdeaProjects/github.com/bcosNFT/src/main/resources/config.toml";
+    public static final String configFile = "/Users/sky/IdeaProjects/github.com/BcosNFT/src/main/resources/config.toml";
     public static final String name = "MyNFT";
     public static final String symbol = "NFT";
     public static final String addr = "0xfeed6d6161500ba975ed4893d38b7952e8c4933e";
@@ -30,8 +30,15 @@ public class Main {
         Wines wines = Wines.deploy(client, cryptoKeyPair, name, symbol);
 
         TransactionReceipt receipt = wines.issueWineNFT(addr, BigInteger.ONE, "https://www.tttttt.com/1");
+        BigInteger totalSupply = wines.totalSupply();
+        logger.info("totalSupply: {}", totalSupply);
+
+        wines.issueWineNFT(addr, BigInteger.valueOf(100), "https://www.tttttt.com/100");
+        totalSupply = wines.totalSupply();
+        logger.info("totalSupply: {}", totalSupply);
 
         String tokenURI = wines.tokenURI(BigInteger.ONE);
+
 
         logger.info(tokenURI);
 
