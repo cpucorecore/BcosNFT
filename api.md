@@ -118,6 +118,22 @@ public class Wines {
      * @return  交易回执
      */
     public TransactionReceipt safeTransferFrom(String from, String to, BigInteger tokenId, byte[] _data);
+
+    /**
+     * 发行nft
+     * @param   to   目标地址
+     * @param   tokenId   tokenId
+     * @param   tokenURI    nft对应的metadata URI
+     * @return  交易回执
+     */
+    public TransactionReceipt issueWineNFT(String to, BigInteger tokenId, String tokenURI);
+
+    /**
+     * 销毁nft
+     * @param   tokenId   要销毁的nft
+     * @return  交易回执
+     */
+    public TransactionReceipt burnWineNFT(BigInteger tokenId);
 }
 
 ```
